@@ -40,7 +40,7 @@ class RouteController: UIViewController {
     
     private func showAuthorization() {
         let controller = SwiftUIHostController(
-            view: SignInView(viewModel: diContainer.resolve(SignInViewModel.self)!)
+            view: SignInView(viewModel: diContainer.resolve(SignInViewModel.self)!, navigationController: self.navigation)
         )
         navigation.viewControllers = [controller]
         present(navigation, animated: false)

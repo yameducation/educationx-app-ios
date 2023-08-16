@@ -12,6 +12,7 @@ public enum LoginMethod: String {
     case facebook = "Facebook"
     case google = "Google"
     case microsoft = "Microsoft"
+    case oauth2 = "Custom OAuth2"
 }
 
 //sourcery: AutoMockable

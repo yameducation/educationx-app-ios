@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import OAuthSwift
 
 //sourcery: AutoMockable
 public protocol AuthInteractorProtocol {
     @discardableResult
+    func login(credential: OAuthSwiftCredential) async throws -> User
     func login(username: String, password: String) async throws -> User
     func resetPassword(email: String) async throws -> ResetPassword
     func getCookies(force: Bool) async throws
@@ -24,6 +26,11 @@ public class AuthInteractor: AuthInteractorProtocol {
     
     public init(repository: AuthRepositoryProtocol) {
         self.repository = repository
+    }
+    
+    @discardableResult
+    public func login(credential: OAuthSwiftCredential) async throws -> User {
+        return try await repository.login(credential: credential)
     }
     
     @discardableResult

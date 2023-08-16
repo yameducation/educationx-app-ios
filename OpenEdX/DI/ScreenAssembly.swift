@@ -48,6 +48,7 @@ class ScreenAssembly: Assembly {
                 interactor: r.resolve(AuthInteractorProtocol.self)!,
                 router: r.resolve(AuthorizationRouter.self)!,
                 analytics: r.resolve(AuthorizationAnalytics.self)!,
+                config: r.resolve(Config.self)!,
                 validator: r.resolve(Validator.self)!
             )
         }

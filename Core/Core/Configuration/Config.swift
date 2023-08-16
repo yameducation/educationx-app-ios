@@ -11,6 +11,7 @@ public class Config {
     
     public let baseURL: URL
     public let oAuthClientId: String
+    public let webLogin: Bool
     
     public lazy var termsOfUse: URL? = {
         URL(string: "\(baseURL.description)/tos")
@@ -20,14 +21,15 @@ public class Config {
         URL(string: "\(baseURL.description)/privacy")
     }()
     
-    public let feedbackEmail = "support@example.com"
+    public let feedbackEmail = "contact@yam-edu.com"
     
-    public init(baseURL: String, oAuthClientId: String) {
+    public init(baseURL: String, oAuthClientId: String, webLogin: Bool) {
         guard let url = URL(string: baseURL) else {
             fatalError("Ivalid baseURL")
         }
         self.baseURL = url
         self.oAuthClientId = oAuthClientId
+        self.webLogin = webLogin
     }
 }
 
@@ -35,7 +37,7 @@ public class Config {
 #if DEBUG
 public class ConfigMock: Config {
     public convenience init() {
-        self.init(baseURL: "https://google.com/", oAuthClientId: "client_id")
+        self.init(baseURL: "https://google.com/", oAuthClientId: "client_id", webLogin: false)
     }
 }
 #endif

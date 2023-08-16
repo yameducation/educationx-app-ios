@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import OAuthSwift
 
 public protocol AuthRepositoryProtocol {
+    func login(credential: OAuthSwiftCredential) async throws -> User
     func login(username: String, password: String) async throws -> User
     func getCookies(force: Bool) async throws
     func getRegistrationFields() async throws -> [PickerFields]
@@ -26,6 +28,17 @@ public class AuthRepository: AuthRepositoryProtocol {
         self.api = api
         self.appStorage = appStorage
         self.config = config
+    }
+    
+    public func login(credential: OAuthSwiftCredential) async throws -> User {
+        // Login for when we have the accessToken and refreshToken directly, like from web-view
+        // OAuth logins.
+        appStorage.cookiesDate = nil
+        appStorage.accessToken = credential.oauthToken
+        appStorage.refreshToken = credential.oauthRefreshToken
+        let user = try await api.requestData(AuthEndpoint.getUserInfo).mapResponse(DataLayer.User.self)
+        appStorage.user = user
+        return user.domain
     }
     
     public func login(username: String, password: String) async throws -> User {
@@ -100,6 +113,11 @@ public class AuthRepository: AuthRepositoryProtocol {
 // Mark - For testing and SwiftUI preview
 #if DEBUG
 class AuthRepositoryMock: AuthRepositoryProtocol {
+    
+    func login(credential: OAuthSwiftCredential) async throws -> User {
+        User(id: 1, username: "User", email: "email@gmail.com", name: "User Name", userAvatar: "")
+    }
+    
     func login(username: String, password: String) async throws -> User {
         User(id: 1, username: "User", email: "email@gmail.com", name: "User Name", userAvatar: "")
     }
