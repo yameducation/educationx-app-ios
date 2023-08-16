@@ -28,22 +28,22 @@ class BuildConfiguration {
     var baseURL: String {
         switch environment {
         case .debugDev, .releaseDev:
-            return "https://example-dev.com"
+            return "https://edxdev.yam-edu.com"
         case .debugStage, .releaseStage:
-            return "https://example-stage.com"
+            return "https://edxdev.yam-edu.com"
         case .debugProd, .releaseProd:
-            return "https://example.com"
+            return "https://courses.yam-edu.com"
         }
     }
     
     var clientId: String {
         switch environment {
         case .debugDev, .releaseDev:
-            return "DEV_CLIENT_ID"
+            return "g7H79XL9yCCKKha70vcLE5dKJCTyYuKthk9OPtwl"
         case .debugStage, .releaseStage:
-            return "STAGE_CLIENT_ID"
+            return "g7H79XL9yCCKKha70vcLE5dKJCTyYuKthk9OPtwl"
         case .debugProd, .releaseProd:
-            return "PROD_CLIENT_ID"
+            return "giEfkU5XH6o7QOGaocL7b1X4LyX2rYi7wrEwpYG6"
         }
     }
 
@@ -62,7 +62,7 @@ class BuildConfiguration {
     The key, ALLOWED_REDIRECT_URI_SCHEMES, should be set to something
     like ['https', 'com.bundle.app'], again, where com.bundle.app is the
     bundle name for your app. */
-    var webLogin: Bool = false
+    var webLogin: Bool = true
     
     var firebaseOptions: FirebaseOptions {
         switch environment {

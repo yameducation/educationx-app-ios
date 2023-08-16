@@ -14,11 +14,11 @@ public class Config {
     public let webLogin: Bool
     
     public lazy var termsOfUse: URL? = {
-        URL(string: "\(baseURL.description)/tos")
+        URL(string: "https://www.yam-edu.com/termofservice")
     }()
     
     public lazy var privacyPolicy: URL? = {
-        URL(string: "\(baseURL.description)/privacy")
+        URL(string: "https://www.yam-edu.com/privacy")
     }()
     
     public let feedbackEmail = "contact@yam-edu.com"
