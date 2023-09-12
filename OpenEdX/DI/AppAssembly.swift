@@ -105,7 +105,11 @@ class AppAssembly: Assembly {
         }.inObjectScope(.container)
         
         container.register(Config.self) { _ in
-            Config(baseURL: BuildConfiguration.shared.baseURL, oAuthClientId: BuildConfiguration.shared.clientId)
+            Config(
+                baseURL: BuildConfiguration.shared.baseURL,
+                oAuthClientId: BuildConfiguration.shared.clientId,
+                webLogin: BuildConfiguration.shared.webLogin
+            )
         }.inObjectScope(.container)
         
         container.register(CSSInjector.self) { _ in

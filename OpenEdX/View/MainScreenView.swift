@@ -59,15 +59,16 @@ struct MainScreenView: View {
             .tag(MainTab.dashboard)
             .hideNavigationBar()
             
-            VStack {
-                Text(CoreLocalization.Mainscreen.inDeveloping)
-            }
-            .tabItem {
-                CoreAssets.programs.swiftUIImage.renderingMode(.template)
-                Text(CoreLocalization.Mainscreen.programs)
-            }
-            .tag(MainTab.programs)
-            .hideNavigationBar()
+            // Disabling this since it's not actually ready.
+//            VStack {
+//                Text(CoreLocalization.Mainscreen.inDeveloping)
+//            }
+//            .tabItem {
+//                CoreAssets.programs.swiftUIImage.renderingMode(.template)
+//                Text(CoreLocalization.Mainscreen.programs)
+//            }
+//            .tag(MainTab.programs)
+//            .hideNavigationBar()
 
             VStack {
                 ProfileView(
